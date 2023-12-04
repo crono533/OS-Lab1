@@ -25,6 +25,7 @@ void consumer_thread() {
         unique_lock<mutex> lock(mtx);
         cv.wait(lock, [] { return !provider_active; });  // Ожидаем, если активен поставщик
         cout << "Потребитель: получил событие" << endl;
+	cout << endl;
         provider_active = true;
         cv.notify_one();  // Сообщаем поставщику, что событие обработано
     }
